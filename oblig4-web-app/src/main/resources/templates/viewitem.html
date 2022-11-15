@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ItemView</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+	<script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div th:replace="fragments/general.html :: header"></div>
+		<div th:replace="fragments/general.html :: menu"></div>
+	</div>
+
+		<table cellpadding="10">
+			<tr>
+				<td width="100px">Id:</td>
+				<td><b margin-left="15px" th:text="${item.id}" /></td>
+			<tr>
+			<tr>
+				<td><b th:text="#{label.name}" />:</td>
+				<td><b th:text="${item.name}" /></td>
+			<tr>
+			<tr>
+				<td><b th:text="#{label.price}" />:</td>
+				<td><b th:text="${item.price}" /></td>
+			<tr>
+			<tr>
+				<td><b th:text="#{label.description}" />:</td>
+				<td><b th:text="${item.description}" /></td>
+			<tr>
+		</table>
+
+		<div th:replace="fragments/general.html :: footer"></div>
+</div>
+
+</body>
+<script type="text/javascript">
+      $(document).ready(function () {
+          $("#locales").change(function () {
+              var selectedOption = $('#locales').val();
+              if (selectedOption != '') {
+                  window.location.replace('?lang=' + selectedOption);
+              }
+          });
+      });
+   </script>
+</html>

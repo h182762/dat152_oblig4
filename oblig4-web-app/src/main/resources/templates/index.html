@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headerfiles (title='ItemView')">
+</head>
+<body>
+<div class="container">
+  	<div class="page-header" id="banner">
+	     <div th:replace="fragments/general.html :: header"></div>
+	     <div th:replace="fragments/general.html :: menu"></div>
+  	</div>
+     
+  	<p><span th:text="#{label.main-text}" />.</p>
+ 
+ 	<div th:replace="fragments/general.html :: footer"></div>
+  
+</div>
+</body>
+</html>

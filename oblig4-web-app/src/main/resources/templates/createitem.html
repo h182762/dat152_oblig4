@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headerfiles (title='Create New Item')">
+<body>
+
+<div class="container">
+	<div class="page-header" id="banner">
+		<header th:insert="fragments/general.html :: header"> </header>
+		<div th:replace="fragments/general.html :: menu"></div>
+	</div>
+	
+	<form th:action="@{/createitem}" method="post" enctype="multipart/form-data">
+	    <div><input type="hidden" th:value="${id}" name="id" /></div>
+		<table>
+			<tr>
+				<td><span th:text="#{label.name}" />:</td>
+				<td><input name="name" /></td>
+			</tr>
+			<tr>
+				<td><span th:text="#{label.price}" />:</td>
+				<td><input name="price" /></td>
+			</tr>
+			<tr>
+				<td><span th:text="#{label.description}" />:</td>
+				<td><input name="description" /></td>
+			</tr>
+		</table>
+	    <br>
+		<div>
+			<input type="submit" th:value="#{label.button-new-item}" name="button"/>
+		</div>
+	</form>
+	
+	<div th:replace="fragments/general.html :: footer"></div>
+	
+</div>
+
+</body>
+</html>

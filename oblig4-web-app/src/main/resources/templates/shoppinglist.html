@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/general.html :: headerfiles (title='Shopping List')">
+<body>
+<div class="container">
+	<div class="page-header" id="banner">
+      <header th:insert="fragments/general.html :: header"> </header>
+      <div th:replace="fragments/general.html :: menu"></div>
+    </div>
+	<div class="row">
+       	<div class="col-lg-8 col-md-7 col-sm-6">
+			<p><a href="createitem"><span th:text="#{label.create-item}" /></a></p>
+
+				<table border=1 class="table table-striped table-hover">
+					<tr>
+						<th>Id</th>
+						<th><span th:text="#{label.name}" /></th>
+						<th><span th:text="#{label.price}" /></th>
+						<th><span th:text="#{label.description}" /></th>
+					</tr>
+					<tr th:each="item : ${items}">
+						<td th:text="${item.id}"></td>
+						<td th:text="${item.name}"></td>
+						<td th:text="${item.price}"></td>
+						<td th:text="${item.description}"></td>
+						<td>
+							<a th:href="@{viewitem/{id}(id=${item.id})}">view</a>
+						</td>
+					</tr>
+				</table>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/general.html :: footer"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerfiles (title)">
+  <title th:text="${title}"></title>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="/bootstrap.min.css" media="screen"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+  </script>
+  <script type="text/javascript">
+      $(document).ready(function () {
+          $("#locales").change(function () {
+              var selectedOption = $('#locales').val();
+              if (selectedOption != '') {
+                  window.location.replace('?lang=' + selectedOption);
+              }
+          });
+      });
+   </script>
+</head>
+<body>
+    <div th:fragment="header">
+        <h1>Demo: Spring Web MVC (<span th:text="#{label.heading}" />)</h1>
+    </div>
+
+    <div class="text-left" th:fragment="menu">
+        <p> <a href="/">Home</a> | <a href="/viewitems">Shoppinglist</a> | 
+            <a href="http://spring.io">Spring Framework</a> | 
+            <a href="https://www.thymeleaf.org/documentation.html">Thymeleaf</a> | 
+            <span th:text="#{lang.change}"></span>:
+			<select id="locales">
+			    <option value=""></option>
+			    <option value="uk" th:text="#{lang.uk}"></option>
+			    <option value="no" th:text="#{lang.no}"></option>
+			</select></p>	
+    </div>
+    
+    
+    <footer class="text-center" th:fragment="footer">
+    	<p style="font-style: italic"> Created by Lasse Jenssen </p>
+    	<p> <a href="http://www.jcon.no/blog">http://www.jcon.no/blog</a></p>
+    </footer>
+</body>
+</html>
