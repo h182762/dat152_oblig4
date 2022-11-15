@@ -72,4 +72,26 @@ public class ItemController {
 		return json;
 	}
 
+	/**
+	 * Delete a item given the id
+	 * 
+	 * @param id - the id of the item
+	 */
+	@RequestMapping(value = "/items/{id}", method = RequestMethod.DELETE)
+	protected String deleteItem(@PathVariable String id) {
+		// TODO
+		return "";
+	}
+
+	/**
+	 * Update a item given the id
+	 * 
+	 * @param id - the id of the item
+	 */
+	@RequestMapping(value = "/items/{id}", method = RequestMethod.PUT)
+	protected String modifyItem(@PathVariable String id) {
+		// TODO
+		return "";
+	}
+
 }
