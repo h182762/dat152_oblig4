@@ -45,11 +45,11 @@ public class ItemController {
 	 */
 	@RequestMapping(value = "/items", method = RequestMethod.POST)
 	@ResponseStatus(code = HttpStatus.OK)
-	protected String createItem(@RequestParam String id, @RequestParam String name, @RequestParam Double price,
+	protected String createItem(@RequestParam String name, @RequestParam Double price,
 			@RequestParam String description) {
 		try {
 			// TODO ADD ERROR WHEN ID IS THE SAME
-			Item newItem = new Item(id, name, price, description);
+			Item newItem = new Item(instance.getNextId(), name, price, description);
 			instance.createItem(newItem);
 			return "Success";
 		} catch (Exception e) {
