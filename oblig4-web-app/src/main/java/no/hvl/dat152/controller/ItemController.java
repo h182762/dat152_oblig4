@@ -56,13 +56,21 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "/createitem", method = RequestMethod.POST)
-	protected String createItem(@RequestParam String id, @RequestParam String name, @RequestParam Double price,
-			@RequestParam String description, Model model) {
+	protected String createItem(@RequestParam String name, @RequestParam Double price, @RequestParam String description,
+			Model model) {
+		System.out.println(name + ", " + price + ", " + description);
+		if (name != null && price != null && description != null) {
+			String fooResourceUrl = "http://localhost:8299/items/";
+			Item newItem = new Item();
+			ResponseEntity<Item> response = restTemplate.postForEntity(
+					"http://localhost:8299/items?name=" + name + "&price=" + price + "&description=" + description,
+					newItem, Item.class);
 
-		final Item newItem = new Item(id, name, price, description);
-		// ItemDAOMemorySingleton.getInstance().createItem(newItem);
+			return "redirect:viewitems";
+		} else {
+			return "viewitem";
+		}
 
-		return "redirect:viewitems";
 	}
 
 }

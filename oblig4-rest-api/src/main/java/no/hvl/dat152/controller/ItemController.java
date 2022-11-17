@@ -30,7 +30,6 @@ public class ItemController {
 	protected String getItems() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		List<Item> allItems = instance.findAllItems();
-		System.out.println("Get items");
 		String json = gson.toJson(allItems);
 		return json;
 	}
@@ -51,7 +50,9 @@ public class ItemController {
 			// TODO ADD ERROR WHEN ID IS THE SAME
 			Item newItem = new Item(instance.getNextId(), name, price, description);
 			instance.createItem(newItem);
-			return "Success";
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			String json = gson.toJson(newItem);
+			return json;
 		} catch (Exception e) {
 			return "Failure: " + e;
 		}
