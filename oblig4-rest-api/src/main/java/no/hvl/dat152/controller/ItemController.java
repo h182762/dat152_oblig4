@@ -3,7 +3,9 @@ package no.hvl.dat152.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,6 +72,7 @@ public class ItemController {
 		Item item = instance.findItem(id);
 
 		String json = gson.toJson(item);
+
 		return json;
 	}
 
@@ -79,9 +82,13 @@ public class ItemController {
 	 * @param id - the id of the item
 	 */
 	@RequestMapping(value = "/items/{id}", method = RequestMethod.DELETE)
-	protected String deleteItem(@PathVariable String id) {
-		// TODO
-		return "";
+	protected HttpStatus deleteItem(@PathVariable String id) {
+		boolean deleted = instance.deleteItem(id);
+		if (deleted == true) {
+			return HttpStatus.OK;
+		} else {
+			return HttpStatus.NOT_FOUND;
+		}
 	}
 
 	/**
@@ -89,10 +96,15 @@ public class ItemController {
 	 * 
 	 * @param id - the id of the item
 	 */
-	@RequestMapping(value = "/items/{id}", method = RequestMethod.PUT)
-	protected String modifyItem(@PathVariable String id) {
-		// TODO
-		return "";
+	@RequestMapping(value = "/items/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	protected HttpStatus modifyItem(@PathVariable String id, @RequestBody Item body) {
+		try {
+			instance.updateItem(id, body);
+			return HttpStatus.OK;
+		} catch (Exception e) {
+			return HttpStatus.NOT_FOUND;
+		}
+
 	}
 
 }

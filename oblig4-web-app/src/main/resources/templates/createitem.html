@@ -9,20 +9,20 @@
 		<div th:replace="fragments/general.html :: menu"></div>
 	</div>
 	
-	<form th:action="@{/createitem}" method="post" enctype="multipart/form-data">
+	<form th:action="@{/createitem}" method="post" enctype="multipart/form-data" >
 	    <div><input type="hidden" th:value="${id}" name="id" /></div>
 		<table>
 			<tr>
 				<td><span th:text="#{label.name}" />:</td>
-				<td><input name="name" /></td>
+				<td><input name="name" pattern="^[a-zA-Z]+$"/></td>
 			</tr>
 			<tr>
 				<td><span th:text="#{label.price}" />:</td>
-				<td><input name="price" /></td>
+				<td><input name="price" pattern="^[0-9]*$"/></td>
 			</tr>
 			<tr>
 				<td><span th:text="#{label.description}" />:</td>
-				<td><input name="description" /></td>
+				<td><input name="description" pattern="^[a-zA-Z]+$"/></td>
 			</tr>
 		</table>
 	    <br>
