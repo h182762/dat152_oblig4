@@ -29,7 +29,7 @@ public class ItemController {
 	 * @return JSON representation of all items
 	 */
 	@RequestMapping(value = "/items", method = RequestMethod.GET)
-	protected String getItems() {
+	public String getItems() {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		List<Item> allItems = instance.findAllItems();
 		String json = gson.toJson(allItems);
@@ -67,9 +67,12 @@ public class ItemController {
 	 * @param id - the id of the item
 	 */
 	@RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
-	protected String getItem(@PathVariable String id) {
+	public String getItem(@PathVariable String id) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		Item item = instance.findItem(id);
+		if (item == null) {
+			return "NOT FOUND";
+		}
 
 		String json = gson.toJson(item);
 
